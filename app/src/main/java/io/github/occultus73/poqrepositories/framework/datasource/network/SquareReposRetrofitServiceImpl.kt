@@ -1,0 +1,3 @@
+package io.github.occultus73.poqrepositories.framework.datasource.network
+
+class SquareReposRetrofitServiceImpl : SquareReposRetrofitService

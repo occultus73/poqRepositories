@@ -1,11 +1,11 @@
-package io.github.occultus73.poqrepositories.framework.datasource.network
+package io.github.occultus73.poqrepositories.framework.datasource.network.retrofit
 
 import androidx.lifecycle.LiveData
 import com.codingwithmitch.openapi.util.GenericApiResponse
-import io.github.occultus73.poqrepositories.framework.datasource.network.model.SquareReposItem
+import io.github.occultus73.poqrepositories.business.domain.model.SquareReposItem
 import retrofit2.http.*
 
-interface RepositoriesService {
+interface SquareReposRetrofit {
 
     //Documentation: https://developer.github.com/v3/repos/#list-organization-repositories
 

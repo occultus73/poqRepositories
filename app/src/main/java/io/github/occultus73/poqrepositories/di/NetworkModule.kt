@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.github.occultus73.poqrepositories.framework.datasource.network.RepositoriesService
+import io.github.occultus73.poqrepositories.framework.datasource.network.retrofit.SquareReposRetrofit
 import io.github.occultus73.weatherforecast.model.network.ConnectivityInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,14 +34,14 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRepositoriesService(okHttpClient: OkHttpClient): RepositoriesService {
+    fun provideRepositoriesService(okHttpClient: OkHttpClient): SquareReposRetrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
-            .create(RepositoriesService::class.java)
+            .create(SquareReposRetrofit::class.java)
     }
 
 

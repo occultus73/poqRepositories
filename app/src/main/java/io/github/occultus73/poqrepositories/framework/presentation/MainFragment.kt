@@ -1,8 +1,8 @@
 package io.github.occultus73.poqrepositories.framework.presentation
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.occultus73.poqrepositories.R
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main)
+class MainFragment: Fragment(R.layout.fragment_main)
