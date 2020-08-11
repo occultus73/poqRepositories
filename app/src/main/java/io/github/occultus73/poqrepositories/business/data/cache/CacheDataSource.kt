@@ -5,7 +5,9 @@ import io.github.occultus73.poqrepositories.business.domain.model.SquareReposIte
 
 interface CacheDataSource {
 
-    suspend fun insertList(list: List<SquareReposItem>)
+    suspend fun insert(squareReposItem: SquareReposItem): Long
+
+    suspend fun insertList(squareReposItems: List<SquareReposItem>)
 
     suspend fun get(): List<SquareReposItem>
 }

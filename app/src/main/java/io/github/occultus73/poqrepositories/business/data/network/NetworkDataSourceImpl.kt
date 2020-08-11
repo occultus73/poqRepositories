@@ -11,7 +11,7 @@ class NetworkDataSourceImpl(
 ) : NetworkDataSource  {
 
     override suspend fun get(): List<SquareReposItem> {
-        return listOf()
+        return networkMapper.mapFromEntityList(squareReposRetrofitService.get())
     }
 
 }

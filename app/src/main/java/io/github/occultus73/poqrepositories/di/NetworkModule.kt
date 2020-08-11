@@ -74,7 +74,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofitService(squareReposRetrofit: SquareReposRetrofit): SquareReposRetrofitService {
+    fun provideSquareReposRetrofitService(squareReposRetrofit: SquareReposRetrofit): SquareReposRetrofitService {
         return SquareReposRetrofitServiceImpl(squareReposRetrofit)
     }
 
