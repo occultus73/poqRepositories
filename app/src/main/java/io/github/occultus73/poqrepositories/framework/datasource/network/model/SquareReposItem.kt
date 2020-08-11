@@ -1,4 +1,4 @@
-package io.github.occultus73.poqrepositories.model
+package io.github.occultus73.poqrepositories.framework.datasource.network.model
 
 
 import com.google.gson.annotations.SerializedName
