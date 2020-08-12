@@ -1,8 +1,8 @@
 package io.github.occultus73.poqrepositories.di
 
 import android.content.Context
-import com.codingwithmitch.daggerhiltplayground.business.data.network.NetworkDataSource
-import com.codingwithmitch.daggerhiltplayground.business.data.network.NetworkDataSourceImpl
+import io.github.occultus73.poqrepositories.business.data.network.NetworkDataSource
+import io.github.occultus73.poqrepositories.business.data.network.NetworkDataSourceImpl
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -17,7 +17,8 @@ import io.github.occultus73.poqrepositories.framework.datasource.network.SquareR
 import io.github.occultus73.poqrepositories.framework.datasource.network.mappers.NetworkMapper
 import io.github.occultus73.poqrepositories.framework.datasource.network.model.SquareReposNetworkEntity
 import io.github.occultus73.poqrepositories.framework.datasource.network.retrofit.SquareReposRetrofit
-import io.github.occultus73.weatherforecast.model.network.ConnectivityInterceptor
+import io.github.occultus73.poqrepositories.util.CustomExceptions
+import io.github.occultus73.poqrepositories.util.ConnectivityInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -31,8 +32,35 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideNetworkMapper(): EntityMapper<SquareReposNetworkEntity, SquareReposItem> {
-        return NetworkMapper()
+    fun provideCustomExceptions(@ApplicationContext context: Context): CustomExceptions {
+        return CustomExceptions(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideConnectivityInterceptor(
+        @ApplicationContext context: Context,
+        customExceptions: CustomExceptions
+    ): ConnectivityInterceptor {
+        return ConnectivityInterceptor(context, customExceptions)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().setLevel(Level.BASIC)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttp(
+        connectivityInterceptor: ConnectivityInterceptor,
+        loggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(connectivityInterceptor)
+            .addInterceptor(loggingInterceptor)
+            .build()
     }
 
     @Singleton
@@ -41,18 +69,6 @@ object NetworkModule {
         return GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .create()
-    }
-
-    @Singleton
-    @Provides
-    fun provideOkHttp(@ApplicationContext context: Context): OkHttpClient {
-        val connectivityInterceptor = ConnectivityInterceptor(context)
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(Level.BASIC)
-
-        return OkHttpClient.Builder()
-            .addInterceptor(connectivityInterceptor)
-            .addInterceptor(loggingInterceptor)
-            .build()
     }
 
     @Singleton
@@ -76,6 +92,12 @@ object NetworkModule {
     @Provides
     fun provideSquareReposRetrofitService(squareReposRetrofit: SquareReposRetrofit): SquareReposRetrofitService {
         return SquareReposRetrofitServiceImpl(squareReposRetrofit)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetworkMapper(): EntityMapper<SquareReposNetworkEntity, SquareReposItem> {
+        return NetworkMapper()
     }
 
     @Singleton

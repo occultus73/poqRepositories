@@ -1,4 +1,4 @@
-package com.codingwithmitch.daggerhiltplayground.business.data.cache
+package io.github.occultus73.poqrepositories.business.data.cache
 
 import io.github.occultus73.poqrepositories.business.domain.model.SquareReposItem
 import io.github.occultus73.poqrepositories.framework.datasource.cache.SquareReposDaoService

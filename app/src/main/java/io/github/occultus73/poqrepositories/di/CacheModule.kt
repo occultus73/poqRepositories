@@ -2,8 +2,8 @@ package io.github.occultus73.poqrepositories.di
 
 import android.content.Context
 import androidx.room.Room
-import com.codingwithmitch.daggerhiltplayground.business.data.cache.CacheDataSource
-import com.codingwithmitch.daggerhiltplayground.business.data.cache.CacheDataSourceImpl
+import io.github.occultus73.poqrepositories.business.data.cache.CacheDataSource
+import io.github.occultus73.poqrepositories.business.data.cache.CacheDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

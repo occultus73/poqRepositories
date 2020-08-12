@@ -5,15 +5,25 @@ import com.google.gson.annotations.SerializedName
 
 data class SquareReposNetworkEntity(
 
-    @SerializedName("pk")
+    @SerializedName("id")
     @Expose
-    var id: Int,
+    val id: Int,
 
-    @SerializedName("category")
+    @SerializedName("description")
     @Expose
-    val description: String,
+    var description: String?,
 
-    @SerializedName("category")
+    @SerializedName("name")
     @Expose
-    val name: String
-)
+    var name: String?
+){
+    init {
+        if (description == null){
+            description = "No Description Given"
+        }
+        if (name == null){
+            name = "No Name?!"
+        }
+    }
+
+}

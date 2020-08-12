@@ -1,16 +1,16 @@
-package io.github.occultus73.weatherforecast.model.network
+package io.github.occultus73.poqrepositories.util
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import io.github.occultus73.poqrepositories.util.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Response
 
 class ConnectivityInterceptor(
-    private val context: Context
+    private val context: Context,
+    private val customExceptions: CustomExceptions
 ) : Interceptor {
     companion object {
         private const val TAG = "ConnectivityInterceptor"
@@ -18,7 +18,7 @@ class ConnectivityInterceptor(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isOnline())
-            throw NoConnectivityException()
+            throw customExceptions.noConnectivityException
         return chain.proceed(chain.request())
     }
 

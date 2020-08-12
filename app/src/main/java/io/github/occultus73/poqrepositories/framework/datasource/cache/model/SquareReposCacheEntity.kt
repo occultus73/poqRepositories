@@ -9,11 +9,11 @@ data class SquareReposCacheEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int = 0,
 
     @ColumnInfo(name = "description")
-    val description: String,
+    val description: String = "",
 
     @ColumnInfo(name = "name")
-    val name: String
+    val name: String = ""
 )

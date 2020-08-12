@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="io.github.occultus73.poqrepositories.framework.presentation.MainFragment"
+        android:name="io.github.occultus73.poqrepositories.framework.presentation.ui.MainFragment"
         android:label="MainFragment" />
 </navigation>

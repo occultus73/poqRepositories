@@ -3,8 +3,11 @@ package io.github.occultus73.poqrepositories.framework.datasource.cache.mappers
 import io.github.occultus73.poqrepositories.business.domain.model.SquareReposItem
 import io.github.occultus73.poqrepositories.business.domain.util.EntityMapper
 import io.github.occultus73.poqrepositories.framework.datasource.cache.model.SquareReposCacheEntity
+import javax.inject.Inject
 
-class CacheMapper: EntityMapper<SquareReposCacheEntity, SquareReposItem> {
+class CacheMapper
+@Inject
+constructor() : EntityMapper<SquareReposCacheEntity, SquareReposItem> {
     override fun mapFromEntity(entity: SquareReposCacheEntity): SquareReposItem {
         return SquareReposItem(
             id = entity.id,
@@ -21,7 +24,7 @@ class CacheMapper: EntityMapper<SquareReposCacheEntity, SquareReposItem> {
         )
     }
 
-    fun mapFromEntityList(entities: List<SquareReposCacheEntity>): List<SquareReposItem>{
+    fun mapFromEntityList(entities: List<SquareReposCacheEntity>): List<SquareReposItem> {
         return entities.map { mapFromEntity(it) }
     }
 }
