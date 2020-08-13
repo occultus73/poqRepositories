@@ -1,6 +1,8 @@
 package io.github.occultus73.poqrepositories.framework.presentation.viewmodels
 
+import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import io.github.occultus73.poqrepositories.business.interactors.GetSquareReposItems
 import io.github.occultus73.poqrepositories.framework.presentation.state.MainStateEvent
@@ -14,6 +16,7 @@ import kotlinx.coroutines.flow.onEach
 class MainViewModel
 @ViewModelInject
 constructor(
+    //@Assisted private val savedStateHandle: SavedStateHandle,
     private val getSquareReposItems: GetSquareReposItems
 ) : BaseViewModel<MainStateEvent, MainViewState>() {
     override suspend fun handleStateEvent(stateEvent: MainStateEvent) {
